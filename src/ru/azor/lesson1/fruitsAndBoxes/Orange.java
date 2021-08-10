@@ -7,9 +7,4 @@ public class Orange extends Fruit{
     public float getWeight() {
         return ORANGE_WEIGHT;
     }
-
-    @Override
-    public Fruit createFruit() {
-        return new Orange();
-    }
 }

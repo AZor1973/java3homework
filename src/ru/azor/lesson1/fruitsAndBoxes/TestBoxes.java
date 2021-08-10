@@ -2,12 +2,18 @@ package ru.azor.lesson1.fruitsAndBoxes;
 
 public class TestBoxes {
     public static void main(String[] args) {
-        Box<Apple> appleBox = new Box<>(new Apple());
-        Box<Orange> orangeBox = new Box<>(new Orange());
-        Box<Orange> orangeBox2 = new Box<>(new Orange());
-        appleBox.fillBox(9);
-        orangeBox.fillBox(6);
-        orangeBox2.fillBox(5);
+        Box<Apple> appleBox = new Box<>();
+        Box<Orange> orangeBox = new Box<>();
+        Box<Orange> orangeBox2 = new Box<>();
+        appleBox.fillBox(new Apple());
+        appleBox.fillBox(new Apple());
+        appleBox.fillBox(new Apple());
+        orangeBox.fillBox(new Orange());
+        orangeBox.fillBox(new Orange());
+        orangeBox2.fillBox(new Orange());
+        System.out.println(appleBox);
+        System.out.println(orangeBox);
+        System.out.println(orangeBox2);
         System.out.println("Вес appleBox = " + appleBox.getBoxWeight());
         System.out.println("Вес orangeBox = " + orangeBox.getBoxWeight());
         System.out.println("appleBox и orangeBox равны? : " + orangeBox.compare(appleBox));

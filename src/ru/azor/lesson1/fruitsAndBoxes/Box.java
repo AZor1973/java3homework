@@ -3,17 +3,7 @@ package ru.azor.lesson1.fruitsAndBoxes;
 import java.util.ArrayList;
 
 public class Box<F extends Fruit> {
-    private final F fruit;
-    private final ArrayList<F> insideList;
-
-    public Box(F fruit) {
-        this.fruit = fruit;
-        insideList = new ArrayList<>();
-    }
-
-    public F getFruit() {
-        return fruit;
-    }
+    private final ArrayList<F> insideList = new ArrayList<>();
 
     public float getBoxWeight() {
         if (insideList.isEmpty()) {
@@ -25,11 +15,8 @@ public class Box<F extends Fruit> {
     public boolean compare(Box<?> box) {
         return this.getBoxWeight() == box.getBoxWeight();
     }
-
-    public void fillBox(int n) {
-        for (int i = 0; i < n; i++) {
-            insideList.add((F)this.getFruit().createFruit());
-        }
+    public void fillBox(F fruit) {
+            insideList.add(fruit);
     }
 
     public void pourIntoBox(Box<F> box) {
