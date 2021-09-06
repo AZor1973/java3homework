@@ -6,6 +6,8 @@ import ru.azor.lesson7.tests.SecondTestCase;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class RunTests {
     public static void main(String[] args) {
@@ -29,7 +31,7 @@ public class RunTests {
                     methods[0] = methods[i];
                     methods[i] = temp;
                     countBefore++;
-                }
+                }else
                 if (methods[i].isAnnotationPresent(AfterSuite.class)) {
                     temp = methods[methods.length - 1];
                     methods[methods.length - 1] = methods[i];
@@ -43,9 +45,7 @@ public class RunTests {
         if (countAfter < 1){
             throw new RuntimeException("No AfterSuit");
         }
-      methods.sort(Comparator.comparingInt((Method method) -> {
-            return method.getAnnotation(Test.class).priority().getPriority();
-        }).reversed());
+      Arrays.sort(methods, 1, methods.length-1, Comparator.comparingInt((Method method) -> method.getAnnotation(Test.class).priority()));
         for (Method m : methods) {
                 m.invoke(constructor.newInstance());
         }
