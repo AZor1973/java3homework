@@ -43,17 +43,9 @@ public class RunTests {
         if (countAfter < 1){
             throw new RuntimeException("No AfterSuit");
         }
-        for (int i = 1; i < methods.length-1; i++) {
-            for (int j = 1; j < methods.length - i - 1; j++) {
-                if (methods[j].isAnnotationPresent(Test.class)) {
-                    if (methods[j].getAnnotation(Test.class).priority() > methods[j + 1].getAnnotation(Test.class).priority()) {
-                        temp = methods[j];
-                        methods[j] = methods[j + 1];
-                        methods[j + 1] = temp;
-                    }
-                }
-            }
-        }
+      methods.sort(Comparator.comparingInt((Method method) -> {
+            return method.getAnnotation(Test.class).priority().getPriority();
+        }).reversed());
         for (Method m : methods) {
                 m.invoke(constructor.newInstance());
         }
